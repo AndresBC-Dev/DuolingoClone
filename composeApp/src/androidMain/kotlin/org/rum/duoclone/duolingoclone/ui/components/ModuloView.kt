@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.rum.duoclone.duolingoclone.ui.model.Modulo
 import org.rum.duoclone.duolingoclone.R
-import kotlin.math.sin
 
 @Composable
 fun ModuloView(modulo: Modulo) {
@@ -26,20 +25,12 @@ fun ModuloView(modulo: Modulo) {
                 verticalArrangement = Arrangement.spacedBy(30.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                    // Parámetros de la fórmula
-                    val A = 70f
-                    val n = modulo.lecciones.size
-
-                    modulo.lecciones.forEachIndexed { i, leccion ->
-                        val angle = (3 * Math.PI * i) / (n - 1) - Math.PI
-                        val offsetX = -A * sin(angle).toFloat()
-
-                        LessonCoin(
-                            iconRes = R.drawable.star,
-                            onClick = { leccionSeleccionada = leccion.titulo },
-                            modifier = Modifier.offset(x = offsetX.dp)
-                        )
-                    }
+                modulo.lecciones.forEach { leccion ->
+                    LessonCoin(
+                        iconRes = R.drawable.star,
+                        onClick = { leccionSeleccionada = leccion.titulo }
+                    )
+                }
             }
         }
 
@@ -57,4 +48,3 @@ fun ModuloView(modulo: Modulo) {
         }
     }
 }
-
