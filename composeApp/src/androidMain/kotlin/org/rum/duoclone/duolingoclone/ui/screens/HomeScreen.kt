@@ -37,7 +37,7 @@ fun HomeScreen() {
             verticalAlignment = Alignment.CenterVertically
         ) {
             StatusItem(R.drawable.flag, "3", Color.White)
-            StatusItem(R.drawable.flame, "12", Color.White)
+            StatusItem(R.drawable.flame, "12", Color(0xFFF25912))
             StatusItem(R.drawable.gem, "245", Color(0xFF00B2FF))     // azul
             StatusItem(R.drawable.battery, "25", Color(0xFFFF6EC7)) // rosa
         }
