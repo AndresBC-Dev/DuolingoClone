@@ -26,20 +26,23 @@ fun ModuloView(modulo: Modulo) {
                 verticalArrangement = Arrangement.spacedBy(30.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                    // Parámetros de la fórmula
-                    val A = 70f
-                    val n = modulo.lecciones.size
+                // Parámetros de la fórmula
+                val A = -70f
+                val n = modulo.lecciones.size
+                val SinOmega = (3 * Math.PI) / (n - 1)
+                val phi = -Math.PI
 
-                    modulo.lecciones.forEachIndexed { i, leccion ->
-                        val angle = (3 * Math.PI * i) / (n - 1) - Math.PI
-                        val offsetX = -A * sin(angle).toFloat()
+                modulo.lecciones.forEachIndexed { i, leccion ->
+                    val arg = SinOmega * i + phi
+                    val sinArg = sin(arg)
+                    val scaled = A * sinArg
 
-                        LessonCoin(
-                            iconRes = R.drawable.star,
-                            onClick = { leccionSeleccionada = leccion.titulo },
-                            modifier = Modifier.offset(x = offsetX.dp)
-                        )
-                    }
+                    LessonCoin(
+                        iconRes = R.drawable.star,
+                        onClick = { leccionSeleccionada = leccion.titulo },
+                        modifier = Modifier.offset(x = scaled.dp)
+                    )
+                }
             }
         }
 
@@ -57,4 +60,3 @@ fun ModuloView(modulo: Modulo) {
         }
     }
 }
-
